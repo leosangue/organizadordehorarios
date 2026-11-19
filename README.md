@@ -1,6 +1,6 @@
-# Organizador de Horarios - Prepa CEDI
+# Organizador de Horarios - Prepa CEDI (V1)
 
-Aplicación web para que estudiantes de la Prepa CEDI consulten y gestionen su horario escolar y actividades personales desde un solo lugar, de forma sencilla y gratuita.
+Primera versión funcional de una app web para estudiantes de la Prepa CEDI, enfocada en organizar clases y eventos personales en una sola plataforma.
 
 ## Integrantes
 
@@ -9,148 +9,168 @@ Aplicación web para que estudiantes de la Prepa CEDI consulten y gestionen su h
 - Ivan Robles Lazcano
 - Leonardo Sandoval Guevara
 
-## Descripción del proyecto
+## Objetivo
 
-Este proyecto busca que los estudiantes de la Prepa CEDI tengan un acceso más sencillo a sus respectivos horarios, con el objetivo de que sean más organizados y tengan mejor control de su tiempo. La página permite al usuario ver y manejar su horario de manera simple e intuitiva.
+Facilitar que los alumnos de la Prepa CEDI consulten su horario y administren su tiempo con vistas diaria, semanal y mensual, reduciendo la captura manual de datos y los empalmes de actividades.
 
-## Justificación
+## Alcance de la V1
 
-Los estudiantes suelen combinar materias escolares con actividades extracurriculares, tareas y compromisos personales. Cuando la información está dispersa en fotos, PDFs, chats o apps genéricas, se vuelve más difícil organizar el tiempo y pueden aparecer:
+Esta versión ya incluye:
 
-- estrés
-- empalmes de actividades
-- entregas tardías
-- bajo rendimiento académico
+- Paleta de colores, tipografía y componentes base
+- Esquema de datos para usuarios, categorías, eventos y horarios
+- Prototipo de inicio de sesión
+- Prototipo de agregar evento
+- Prototipo de vistas diaria, semanal y mensual
+- Base inicial de horarios CEDI para validación
+- Documentación de entorno de desarrollo y servidor
+- Comparativa con Google Calendar y When2meet
+- Plan de validación y semana 2
 
-Un sitio web enfocado en organización de horarios ayuda a mejorar la gestión del tiempo, el desempeño académico y el bienestar emocional.
+## Diseño base
 
-## Objetivo general
+### Paleta
 
-Desarrollar un sitio web intuitivo y fácil de usar que permita al usuario organizar eficientemente sus horarios escolares, eventos, trabajo y actividades personales para mejorar su gestión del tiempo.
+- Primario: `#0b3c5d`
+- Secundario: `#328cc1`
+- Acento: `#d9b310`
+- Éxito: `#198754`
+- Fondo: `#f7f4ea`
+- Texto: `#1f2933`
 
-## Problema que resuelve
+### Tipografía
 
-Los estudiantes de la Prepa CEDI tienen dificultades para organizar y consultar:
+- Heading: Poppins
+- Body: Nunito Sans
+- Mono: JetBrains Mono
 
-- horarios de clase
-- tareas
-- actividades extracurriculares
-- compromisos personales
+### Componentes base
 
-Actualmente, deben capturar su horario manualmente o consultarlo en múltiples fuentes. Esto consume tiempo, provoca olvidos y aumenta la posibilidad de conflictos de horario.
+- Botón primario / secundario
+- Tarjeta (`panel`)
+- Chip de categoría
+- Tabla de agenda
+- Segmentador de vistas
 
-## Solución propuesta
+## Modelo de datos (V1)
 
-Se desarrolló una plataforma web que:
+Entidades definidas:
 
-- entrega a los alumnos su horario escolar ya cargado
-- permite agregar eventos personales (tareas, trabajo, actividades)
-- ofrece visualización en tres formatos:
-	- vista diaria
-	- vista semanal
-	- vista mensual
+- `users`
+- `categories`
+- `events`
+- `schedules`
 
-Con esto, el estudiante puede detectar empalmes, planificar mejor y mantener el control de sus responsabilidades.
+Campos principales:
 
-## Funcionalidades principales
+- Usuario: id, nombre, email, rol, grupo, turno
+- Evento: título, descripción, categoría, fecha, hora inicio/fin, fuente, grupo
+- Horario: grupo, turno, día, materia, docente, aula
 
-- Consulta de horario escolar precargado
-- Gestión de eventos personalizados
-- Vistas diaria, semanal y mensual
-- Interfaz enfocada en rapidez y facilidad de uso
+## Prototipos implementados
 
-## Prototipo
+### Inicio de sesión
 
-El prototipo contempla las siguientes secciones:
+Formulario de acceso para simular sesión de alumno y habilitar operaciones de agenda.
 
-- Vista diaria
-- Vista semanal
-- Vista mensual
-- Módulo para agregar eventos
+### Agregar evento
 
-Nota: para mantener este repositorio ligero, se recomienda guardar las capturas en una carpeta como `docs/` o `public/` y referenciarlas en este README.
+Formulario con campos:
 
-## Tecnologías utilizadas
+- título
+- descripción
+- categoría
+- fecha
+- hora de inicio y fin
 
-- React
-- Vite
-- JavaScript (ESModules)
+Los eventos se agregan al estado de la aplicación en tiempo real.
+
+### Vistas de agenda
+
+- Diaria: tabla de eventos por fecha
+- Semanal: agrupación por días
+- Mensual: resumen de eventos por día
+
+## Horarios de grupos CEDI (levantamiento inicial)
+
+Se integró una base preliminar de horarios por grupo (ej. 1A, 2B, 3A) con:
+
+- día
+- hora
+- materia
+- docente
+- aula
+
+Importante: este dataset de V1 está pensado para revisión y validación contra fuente oficial de control escolar en semana 2.
+
+## Entorno de desarrollo y servidor
+
+### Stack
+
+- React 19
+- Vite 8
+- JavaScript
 - CSS
-- ESLint
+
+### Comandos
+
+```bash
+npm install
+npm run dev
+npm run build
+npm run preview
+```
+
+### Servidor / despliegue
+
+Para publicar la app se recomienda:
+
+- Vercel (ideal para deploy continuo con GitHub)
+- Netlify (alternativa equivalente)
+
+## Alternativas del mercado y diferenciador
+
+| Plataforma | Fortalezas | Limitaciones para este caso |
+|---|---|---|
+| Google Calendar | Maduro, recordatorios, multi-dispositivo | No entrega horario CEDI precargado por grupo |
+| When2meet | Excelente para coordinar disponibilidad en grupo | No es gestor académico integral |
+| Organizador CEDI (este proyecto) | Enfoque institucional y horario listo para alumnos | V1 aún en validación de horarios oficiales |
+
+### Diferenciador principal
+
+El proyecto reduce el tiempo de configuración inicial al usar horarios enfocados a la Prepa CEDI, priorizando eficiencia para estudiantes.
+
+## Validación de prototipos
+
+Checklist V1:
+
+- Validar flujo de login con usuarios de prueba
+- Validar claridad del formulario de evento
+- Medir rapidez para localizar clases en vista semanal
+- Levantar feedback de uso en móvil
+
+## Plan semana 2
+
+- Confirmar horarios oficiales con coordinación académica
+- Integrar persistencia de datos (localStorage o backend básico)
+- Añadir navegación por rutas y estados de sesión más robustos
+- Mejorar accesibilidad y notificaciones
 
 ## Estructura del proyecto
 
 ```text
-OrganizadorDeHorarios/
-	public/
-	src/
-		assets/
-		App.css
-		App.jsx
-		index.css
-		main.jsx
-	index.html
-	package.json
-	vite.config.js
-	eslint.config.js
+organizadordehorarios/
+  src/
+    App.jsx
+    App.css
+    index.css
+    main.jsx
+  public/
+  package.json
+  vite.config.js
+  README.md
 ```
 
-## Instalación y ejecución
+## Estado
 
-### Requisitos
-
-- Node.js 18+ (recomendado)
-- npm 9+ (o superior)
-
-### Pasos
-
-1. Clona el repositorio.
-2. Instala dependencias:
-
-```bash
-npm install
-```
-
-3. Inicia el entorno de desarrollo:
-
-```bash
-npm run dev
-```
-
-4. Para generar build de producción:
-
-```bash
-npm run build
-```
-
-## Alternativas en el mercado y diferenciador
-
-Existen herramientas como:
-
-- Google Calendar
-- When2meet
-
-### Diferenciador de este proyecto
-
-- Enfoque directo en la Prepa CEDI.
-- El horario escolar se entrega precargado para el alumno.
-- Reduce tiempo perdido en captura y organización manual.
-- Prioriza eficiencia y acceso rápido para estudiantes de una institución específica.
-
-## Impacto esperado
-
-- Mayor organización personal
-- Mejor administración del tiempo
-- Menor estrés académico
-- Menos conflictos de horario y retrasos
-
-## Trabajo futuro
-
-- Recordatorios y notificaciones
-- Sincronización con calendario externo
-- Filtros por materia y tipo de evento
-- Mejoras de accesibilidad y experiencia móvil
-
-## Licencia
-
-Este proyecto fue desarrollado con fines académicos.
+Primera versión lista para evaluación funcional y ajustes de semana 2.
