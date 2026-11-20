@@ -118,6 +118,16 @@ const INITIAL_EVENTS = [
 
 const WEEK_DAYS = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
 
+const SITE_NAV = [
+  { id: 'diseno-base', label: 'Diseño base' },
+  { id: 'esquema-datos', label: 'Esquema' },
+  { id: 'prototipos', label: 'Prototipos' },
+  { id: 'vistas-agenda', label: 'Vistas' },
+  { id: 'horarios-cedi', label: 'Horarios CEDI' },
+  { id: 'entorno', label: 'Entorno y mercado' },
+  { id: 'validacion', label: 'Semana 2' },
+]
+
 function toDateOnly(dateValue) {
   const d = new Date(dateValue)
   d.setHours(0, 0, 0, 0)
@@ -253,6 +263,15 @@ function App() {
 
   return (
     <main className="app-shell">
+      <header className="site-header panel" aria-label="Navegación principal">
+        <p className="kicker">Estructura del sitio - Gauss</p>
+        <nav className="site-nav">
+          {SITE_NAV.map((item) => (
+            <a key={item.id} href={`#${item.id}`}>{item.label}</a>
+          ))}
+        </nav>
+      </header>
+
       <header className="hero">
         <p className="kicker">Primera versión del proyecto</p>
         <h1>Organizador de Horarios - Prepa CEDI</h1>
@@ -261,7 +280,7 @@ function App() {
         </p>
       </header>
 
-      <section className="panel">
+      <section id="diseno-base" className="panel">
         <h2>1) Paleta, tipografía y componentes base</h2>
         <div className="swatches">
           {PALETTE.map((color) => (
@@ -296,7 +315,7 @@ function App() {
         </div>
       </section>
 
-      <section className="panel">
+      <section id="esquema-datos" className="panel">
         <h2>2) Esquema de usuarios, eventos, categorías y horarios</h2>
         <div className="schema-grid">
           <article>
@@ -318,7 +337,7 @@ function App() {
         </div>
       </section>
 
-      <section className="panel split">
+      <section id="prototipos" className="panel split">
         <article>
           <h2>3) Prototipo: inicio de sesión</h2>
           <p className="hint">Demo: usa alumno@cedi.edu.mx</p>
@@ -412,7 +431,7 @@ function App() {
         </article>
       </section>
 
-      <section className="panel">
+      <section id="vistas-agenda" className="panel">
         <h2>5) Prototipos de vista diaria, semanal y mensual</h2>
         <div className="toolbar">
           <div className="segmented">
@@ -502,7 +521,7 @@ function App() {
         )}
       </section>
 
-      <section className="panel">
+      <section id="horarios-cedi" className="panel">
         <h2>6) Horarios de grupos de la Prepa CEDI (levantamiento inicial)</h2>
         <p className="hint">
           Esta primera versión incluye una base preliminar para validación con coordinación académica. En semana 2 se confirma contra fuente oficial.
@@ -535,7 +554,7 @@ function App() {
         </table>
       </section>
 
-      <section className="panel split">
+      <section id="entorno" className="panel split">
         <article>
           <h2>7) Entorno de desarrollo y servidor</h2>
           <ul>
@@ -577,7 +596,7 @@ function App() {
         </article>
       </section>
 
-      <section className="panel">
+      <section id="validacion" className="panel">
         <h2>9) Validación de prototipos y plan semana 2</h2>
         <div className="week2-grid">
           <article>
@@ -600,6 +619,10 @@ function App() {
           </article>
         </div>
       </section>
+
+      <footer className="site-footer">
+        <p>Organizador de Horarios CEDI - Versión 1</p>
+      </footer>
     </main>
   )
 }
