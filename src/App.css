@@ -6,6 +6,35 @@
   gap: 1rem;
 }
 
+.site-header {
+  position: sticky;
+  top: 0.5rem;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: #0b3c5d;
+  font-weight: 700;
+  border: 1px solid #bcccdc;
+  border-radius: 999px;
+  padding: 0.35rem 0.65rem;
+  background: #f7fbff;
+}
+
+.site-nav a:hover {
+  background: #0b3c5d;
+  color: #fff;
+}
+
 .hero {
   background: linear-gradient(135deg, #0b3c5d 0%, #328cc1 55%, #d9b310 120%);
   color: #fff;
@@ -287,6 +316,13 @@ th {
   display: grid;
   gap: 0.75rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.site-footer {
+  text-align: center;
+  color: #627d98;
+  font-weight: 700;
+  padding: 0.5rem 0;
 }
 
 @media (max-width: 980px) {
