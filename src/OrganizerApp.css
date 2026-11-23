@@ -1,11 +1,11 @@
 :root {
-    --navy: #12213a;
-    --muted: #6d7788;
-    --line: #e7eaf0;
-    --blue: #315cf4;
-    --blue-dark: #2445c5;
+    --navy: #12372a;
+    --muted: #68796f;
+    --line: #dfeae4;
+    --blue: #22c55e;
+    --blue-dark: #16a34a;
     --surface: #ffffff;
-    --background: #f5f7fb;
+    --background: #f4f8f5;
 }
 
 .auth-page {
@@ -14,8 +14,8 @@
     place-items: center;
     padding: 32px;
     background:
-        radial-gradient(circle at 15% 15%, rgba(49, 92, 244, .11), transparent 28%),
-        linear-gradient(135deg, #f7f9fd 0%, #eef3fb 100%);
+        radial-gradient(circle at 15% 15%, rgba(34, 197, 94, .13), transparent 28%),
+        linear-gradient(135deg, #f7fbf8 0%, #eaf7ef 100%);
 }
 
 .auth-card {
@@ -24,10 +24,10 @@
     display: grid;
     grid-template-columns: 42% 58%;
     background: var(--surface);
-    border: 1px solid rgba(18, 33, 58, .08);
+    border: 1px solid rgba(18, 55, 42, .08);
     border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 24px 70px rgba(18, 33, 58, .12);
+    box-shadow: 0 24px 70px rgba(18, 55, 42, .12);
 }
 
 .auth-brand {
@@ -36,7 +36,7 @@
     justify-content: space-between;
     padding: 42px;
     color: white;
-    background: linear-gradient(145deg, #17284a 0%, #315cf4 100%);
+    background: linear-gradient(145deg, #12372a 0%, #22c55e 100%);
 }
 
 .brand-mark {
@@ -151,7 +151,7 @@
 .auth-form input:focus,
 .auth-form select:focus {
     border-color: var(--blue);
-    box-shadow: 0 0 0 3px rgba(49, 92, 244, .1);
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, .12);
 }
 
 .auth-row {
@@ -169,7 +169,7 @@
     font: inherit;
     font-weight: 800;
     cursor: pointer;
-    box-shadow: 0 10px 24px rgba(49, 92, 244, .22);
+    box-shadow: 0 10px 24px rgba(34, 197, 94, .22);
 }
 
 .auth-submit:hover {
@@ -219,7 +219,7 @@
     display: grid;
     place-items: center;
     border-radius: 50%;
-    background: #edf1ff;
+    background: #dff5e7;
     color: var(--blue);
 }
 
@@ -345,7 +345,7 @@
 }
 
 .calendar-day:hover {
-    background: #f8faff;
+    background: #f1faf4;
 }
 
 .calendar-day.outside {
@@ -354,8 +354,8 @@
 }
 
 .calendar-day.selected {
-    background: #f1f5ff;
-    box-shadow: inset 0 0 0 2px rgba(49, 92, 244, .5);
+    background: #e9f9ef;
+    box-shadow: inset 0 0 0 2px rgba(34, 197, 94, .58);
 }
 
 .day-number {
@@ -385,14 +385,14 @@
     display: grid;
     place-items: center;
     border-radius: 7px;
-    background: #edf1ff;
-    color: var(--blue);
+    background: #dff5e7;
+    color: var(--blue-dark);
     font-size: 11px;
 }
 
 .agenda-panel {
     padding: 28px 22px;
-    background: #fbfcfe;
+    background: #f8fbf9;
 }
 
 .agenda-heading h2 {

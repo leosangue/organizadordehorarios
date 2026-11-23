@@ -19,7 +19,7 @@ import {
 import './OrganizerApp.css'
 
 const CATEGORIES = [
-    { id: 'cat-class', name: 'Clase', color: '#315cf4' },
+    { id: 'cat-class', name: 'Clase', color: '#22c55e' },
     { id: 'cat-homework', name: 'Tarea', color: '#f59e0b' },
     { id: 'cat-exam', name: 'Examen', color: '#ef4444' },
     { id: 'cat-personal', name: 'Personal', color: '#12b886' },
