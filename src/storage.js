@@ -28,7 +28,8 @@ export function saveUsers(users) {
 export function readEvents(seedEvents) {
     try {
         const saved = JSON.parse(localStorage.getItem(EVENTS_KEY))
-        return Array.isArray(saved) ? saved : seedEvents
+        if (!Array.isArray(saved)) return seedEvents
+        return saved.filter((event) => !['ev-welcome', 'ev-1', 'ev-2'].includes(event.id))
     } catch {
         return seedEvents
     }

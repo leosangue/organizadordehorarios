@@ -16,6 +16,7 @@ import {
     saveSession,
     saveUsers,
 } from './storage'
+import { CEDI_GROUPS, CEDI_DAYS, getCediScheduleEntries } from './cediSchedules'
 import './OrganizerApp.css'
 
 const CATEGORIES = [
@@ -23,15 +24,6 @@ const CATEGORIES = [
     { id: 'cat-homework', name: 'Tarea', color: '#f59e0b' },
     { id: 'cat-exam', name: 'Examen', color: '#ef4444' },
     { id: 'cat-personal', name: 'Personal', color: '#12b886' },
-]
-
-const CEDI_SCHEDULES = [
-    { id: 'sc-1', title: 'Matemáticas I', day: 1, startTime: '07:00', endTime: '07:50', room: 'A-2' },
-    { id: 'sc-2', title: 'Química I', day: 1, startTime: '08:00', endTime: '08:50', room: 'Lab 1' },
-    { id: 'sc-3', title: 'Comunicación', day: 2, startTime: '07:00', endTime: '07:50', room: 'B-1' },
-    { id: 'sc-4', title: 'Historia', day: 3, startTime: '09:00', endTime: '09:50', room: 'C-3' },
-    { id: 'sc-5', title: 'Inglés III', day: 4, startTime: '10:00', endTime: '10:50', room: 'B-4' },
-    { id: 'sc-6', title: 'Física', day: 5, startTime: '11:00', endTime: '11:50', room: 'Lab 2' },
 ]
 
 function toIsoDate(date) {
@@ -44,19 +36,7 @@ function toIsoDate(date) {
 const today = new Date()
 const isoToday = toIsoDate(today)
 
-const INITIAL_EVENTS = [
-    {
-        id: 'ev-welcome',
-        titulo: 'Matemáticas I',
-        descripcion: 'Clase CEDI',
-        categoriaId: 'cat-class',
-        date: isoToday,
-        startTime: '07:00',
-        endTime: '07:50',
-        creadoPor: 'sistema',
-        fuente: 'CEDI',
-    },
-]
+const INITIAL_EVENTS = []
 
 function categoryFor(id) {
     return CATEGORIES.find((category) => category.id === id) ?? CATEGORIES[3]
@@ -67,6 +47,7 @@ export default function OrganizerApp({ initialMode = 'login' }) {
     const [currentUser, setCurrentUser] = useState(() => readSession())
     const [events, setEvents] = useState(() => readEvents(INITIAL_EVENTS))
     const [selectedDate, setSelectedDate] = useState(isoToday)
+    const [scheduleGroup, setScheduleGroup] = useState(currentUser?.grupo ?? '3A')
     const [loginForm, setLoginForm] = useState({ email: '', password: '' })
     const [signupForm, setSignupForm] = useState({ name: '', email: '', password: '', group: '3A' })
     const [eventForm, setEventForm] = useState({
@@ -79,6 +60,9 @@ export default function OrganizerApp({ initialMode = 'login' }) {
 
     useEffect(() => saveSession(currentUser), [currentUser])
     useEffect(() => saveEvents(events), [events])
+    useEffect(() => {
+        if (currentUser?.grupo) setScheduleGroup(currentUser.grupo)
+    }, [currentUser])
 
     const selectedDateObject = useMemo(() => new Date(`${selectedDate}T12:00:00`), [selectedDate])
 
@@ -95,11 +79,24 @@ export default function OrganizerApp({ initialMode = 'login' }) {
         })
     }, [selectedDateObject])
 
-    const dayEvents = useMemo(() =>
-        events
-            .filter((event) => event.date === selectedDate)
-            .sort((a, b) => a.startTime.localeCompare(b.startTime)),
-        [events, selectedDate])
+    const dayEvents = useMemo(() => {
+        const personalEvents = events.filter((event) => event.date === selectedDate)
+        const weekday = selectedDateObject.getDay()
+        const cediDayIndex = weekday >= 1 && weekday <= 5 ? weekday - 1 : -1
+        const cediEvents = cediDayIndex >= 0
+            ? getCediScheduleEntries(scheduleGroup).filter((entry) => entry.day === cediDayIndex).map((entry) => ({
+                id: entry.id,
+                titulo: entry.subject,
+                categoriaId: 'cat-class',
+                startTime: entry.startTime,
+                endTime: entry.endTime,
+                fuente: 'CEDI',
+            }))
+            : []
+
+        return [...personalEvents, ...cediEvents]
+            .sort((a, b) => a.startTime.localeCompare(b.startTime))
+    }, [events, selectedDate, selectedDateObject, currentUser, scheduleGroup])
 
     function handleLogin(event) {
         event.preventDefault()
@@ -262,8 +259,7 @@ export default function OrganizerApp({ initialMode = 'login' }) {
                                             value={signupForm.group}
                                             onChange={(event) => setSignupForm((previous) => ({ ...previous, group: event.target.value }))}
                                         >
-                                            <option>1A</option><option>1B</option><option>2A</option><option>2B</option>
-                                            <option>3A</option><option>3B</option>
+                                            {CEDI_GROUPS.map((group) => <option key={group}>{group}</option>)}
                                         </select>
                                     </label>
                                 </div>
@@ -318,7 +314,12 @@ export default function OrganizerApp({ initialMode = 'login' }) {
                         {monthDays.map((date) => {
                             const iso = toIsoDate(date)
                             const outside = date.getMonth() !== selectedDateObject.getMonth()
-                            const count = events.filter((event) => event.date === iso).length
+                            const personalCount = events.filter((event) => event.date === iso).length
+                            const cediDayIndex = date.getDay() >= 1 && date.getDay() <= 5 ? date.getDay() - 1 : -1
+                            const cediCount = cediDayIndex >= 0
+                                ? getCediScheduleEntries(scheduleGroup).filter((entry) => entry.day === cediDayIndex).length
+                                : 0
+                            const count = personalCount + cediCount
                             return (
                                 <button
                                     type="button"
@@ -388,6 +389,13 @@ export default function OrganizerApp({ initialMode = 'login' }) {
                             )
                         })}
                     </div>
+
+                    <label className="schedule-group-select">
+                        Horario
+                        <select value={scheduleGroup} onChange={(event) => setScheduleGroup(event.target.value)}>
+                            {CEDI_GROUPS.map((group) => <option key={group} value={group}>{group}</option>)}
+                        </select>
+                    </label>
                 </aside>
             </section>
         </main>
