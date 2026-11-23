@@ -1,600 +1,600 @@
 :root {
-  --navy: #12213a;
-  --muted: #6d7788;
-  --line: #e7eaf0;
-  --blue: #315cf4;
-  --blue-dark: #2445c5;
-  --surface: #ffffff;
-  --background: #f5f7fb;
+    --navy: #12213a;
+    --muted: #6d7788;
+    --line: #e7eaf0;
+    --blue: #315cf4;
+    --blue-dark: #2445c5;
+    --surface: #ffffff;
+    --background: #f5f7fb;
 }
 
 .auth-page {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 32px;
-  background:
-    radial-gradient(circle at 15% 15%, rgba(49, 92, 244, .11), transparent 28%),
-    linear-gradient(135deg, #f7f9fd 0%, #eef3fb 100%);
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 32px;
+    background:
+        radial-gradient(circle at 15% 15%, rgba(49, 92, 244, .11), transparent 28%),
+        linear-gradient(135deg, #f7f9fd 0%, #eef3fb 100%);
 }
 
 .auth-card {
-  width: min(920px, 100%);
-  min-height: 560px;
-  display: grid;
-  grid-template-columns: 42% 58%;
-  background: var(--surface);
-  border: 1px solid rgba(18, 33, 58, .08);
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 24px 70px rgba(18, 33, 58, .12);
+    width: min(920px, 100%);
+    min-height: 560px;
+    display: grid;
+    grid-template-columns: 42% 58%;
+    background: var(--surface);
+    border: 1px solid rgba(18, 33, 58, .08);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 24px 70px rgba(18, 33, 58, .12);
 }
 
 .auth-brand {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 42px;
-  color: white;
-  background: linear-gradient(145deg, #17284a 0%, #315cf4 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 42px;
+    color: white;
+    background: linear-gradient(145deg, #17284a 0%, #315cf4 100%);
 }
 
 .brand-mark {
-  width: 52px;
-  height: 52px;
-  display: grid;
-  place-items: center;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, .16);
-  border: 1px solid rgba(255, 255, 255, .22);
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, .16);
+    border: 1px solid rgba(255, 255, 255, .22);
 }
 
 .brand-mark.small {
-  width: 38px;
-  height: 38px;
-  border-radius: 11px;
-  color: white;
-  background: var(--blue);
-  border: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    color: white;
+    background: var(--blue);
+    border: 0;
 }
 
 .brand-name {
-  margin: 0 0 10px;
-  font-size: 28px;
-  font-weight: 800;
+    margin: 0 0 10px;
+    font-size: 28px;
+    font-weight: 800;
 }
 
 .brand-copy {
-  max-width: 260px;
-  margin: 0;
-  color: rgba(255, 255, 255, .78);
-  line-height: 1.6;
+    max-width: 260px;
+    margin: 0;
+    color: rgba(255, 255, 255, .78);
+    line-height: 1.6;
 }
 
 .auth-content {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  padding: 36px 48px 44px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    padding: 36px 48px 44px;
 }
 
 .auth-tabs {
-  justify-self: end;
-  display: flex;
-  gap: 4px;
-  padding: 4px;
-  border-radius: 12px;
-  background: #f0f2f6;
+    justify-self: end;
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 12px;
+    background: #f0f2f6;
 }
 
 .auth-tabs button {
-  border: 0;
-  border-radius: 8px;
-  padding: 9px 16px;
-  background: transparent;
-  color: var(--muted);
-  font: inherit;
-  font-weight: 800;
-  cursor: pointer;
+    border: 0;
+    border-radius: 8px;
+    padding: 9px 16px;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
 }
 
 .auth-tabs button.active {
-  background: white;
-  color: var(--navy);
-  box-shadow: 0 2px 8px rgba(18, 33, 58, .08);
+    background: white;
+    color: var(--navy);
+    box-shadow: 0 2px 8px rgba(18, 33, 58, .08);
 }
 
 .auth-form {
-  width: 100%;
-  max-width: 390px;
-  align-self: center;
-  justify-self: center;
-  display: grid;
-  gap: 18px;
+    width: 100%;
+    max-width: 390px;
+    align-self: center;
+    justify-self: center;
+    display: grid;
+    gap: 18px;
 }
 
 .auth-kicker {
-  margin: 0 0 6px;
-  color: var(--blue);
-  font-size: 13px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: .08em;
+    margin: 0 0 6px;
+    color: var(--blue);
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .08em;
 }
 
 .auth-form h1 {
-  margin: 0;
-  color: var(--navy);
-  font-size: 34px;
+    margin: 0;
+    color: var(--navy);
+    font-size: 34px;
 }
 
 .auth-form label {
-  display: grid;
-  gap: 8px;
-  color: var(--navy);
-  font-size: 13px;
-  font-weight: 800;
+    display: grid;
+    gap: 8px;
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 800;
 }
 
 .auth-form input,
 .auth-form select {
-  width: 100%;
-  height: 48px;
-  border: 1px solid #dfe3ea;
-  border-radius: 10px;
-  padding: 0 14px;
-  background: white;
-  color: var(--navy);
-  font: inherit;
-  outline: none;
+    width: 100%;
+    height: 48px;
+    border: 1px solid #dfe3ea;
+    border-radius: 10px;
+    padding: 0 14px;
+    background: white;
+    color: var(--navy);
+    font: inherit;
+    outline: none;
 }
 
 .auth-form input:focus,
 .auth-form select:focus {
-  border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgba(49, 92, 244, .1);
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(49, 92, 244, .1);
 }
 
 .auth-row {
-  display: grid;
-  grid-template-columns: 1fr 120px;
-  gap: 12px;
+    display: grid;
+    grid-template-columns: 1fr 120px;
+    gap: 12px;
 }
 
 .auth-submit {
-  height: 50px;
-  border: 0;
-  border-radius: 10px;
-  background: var(--blue);
-  color: white;
-  font: inherit;
-  font-weight: 800;
-  cursor: pointer;
-  box-shadow: 0 10px 24px rgba(49, 92, 244, .22);
+    height: 50px;
+    border: 0;
+    border-radius: 10px;
+    background: var(--blue);
+    color: white;
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 10px 24px rgba(49, 92, 244, .22);
 }
 
 .auth-submit:hover {
-  background: var(--blue-dark);
+    background: var(--blue-dark);
 }
 
 .auth-demo {
-  margin: -6px 0 0;
-  color: var(--muted);
-  font-size: 12px;
-  text-align: center;
+    margin: -6px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
 }
 
 .app-page {
-  min-height: 100vh;
-  background: var(--background);
+    min-height: 100vh;
+    background: var(--background);
 }
 
 .app-header {
-  height: 72px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 32px;
-  background: white;
-  border-bottom: 1px solid var(--line);
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    background: white;
+    border-bottom: 1px solid var(--line);
 }
 
 .app-brand,
 .user-actions {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .app-brand {
-  gap: 10px;
-  color: var(--navy);
+    gap: 10px;
+    color: var(--navy);
 }
 
 .user-actions {
-  gap: 9px;
+    gap: 9px;
 }
 
 .user-avatar {
-  width: 38px;
-  height: 38px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: #edf1ff;
-  color: var(--blue);
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #edf1ff;
+    color: var(--blue);
 }
 
 .user-copy {
-  display: grid;
-  line-height: 1.2;
+    display: grid;
+    line-height: 1.2;
 }
 
 .user-copy strong {
-  color: var(--navy);
-  font-size: 13px;
+    color: var(--navy);
+    font-size: 13px;
 }
 
 .user-copy span {
-  color: var(--muted);
-  font-size: 12px;
+    color: var(--muted);
+    font-size: 12px;
 }
 
 .icon-button {
-  width: 38px;
-  height: 38px;
-  display: grid;
-  place-items: center;
-  margin-left: 8px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: white;
-  color: var(--muted);
-  cursor: pointer;
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    margin-left: 8px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: white;
+    color: var(--muted);
+    cursor: pointer;
 }
 
 .calendar-layout {
-  min-height: calc(100vh - 72px);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 330px;
+    min-height: calc(100vh - 72px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 330px;
 }
 
 .calendar-panel {
-  min-width: 0;
-  padding: 28px 32px 32px;
-  background: white;
-  border-right: 1px solid var(--line);
+    min-width: 0;
+    padding: 28px 32px 32px;
+    background: white;
+    border-right: 1px solid var(--line);
 }
 
 .calendar-toolbar,
 .agenda-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .calendar-toolbar p,
 .agenda-heading p {
-  margin: 0 0 3px;
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: .08em;
+    margin: 0 0 3px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .08em;
 }
 
 .calendar-toolbar h1 {
-  margin: 0;
-  color: var(--navy);
-  font-size: 26px;
-  text-transform: capitalize;
+    margin: 0;
+    color: var(--navy);
+    font-size: 26px;
+    text-transform: capitalize;
 }
 
 .calendar-controls {
-  display: flex;
-  gap: 6px;
+    display: flex;
+    gap: 6px;
 }
 
 .calendar-controls button {
-  height: 38px;
-  min-width: 38px;
-  border: 1px solid var(--line);
-  border-radius: 9px;
-  background: white;
-  color: var(--navy);
-  font: inherit;
-  font-weight: 800;
-  cursor: pointer;
+    height: 38px;
+    min-width: 38px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: white;
+    color: var(--navy);
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
 }
 
 .weekday-row,
 .calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
 }
 
 .weekday-row {
-  margin-top: 24px;
-  border: 1px solid var(--line);
-  border-bottom: 0;
-  border-radius: 12px 12px 0 0;
+    margin-top: 24px;
+    border: 1px solid var(--line);
+    border-bottom: 0;
+    border-radius: 12px 12px 0 0;
 }
 
 .weekday-row span {
-  padding: 11px 12px;
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 800;
-  text-align: right;
+    padding: 11px 12px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 800;
+    text-align: right;
 }
 
 .calendar-grid {
-  border-top: 1px solid var(--line);
-  border-left: 1px solid var(--line);
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
 }
 
 .calendar-day {
-  aspect-ratio: 1.22 / 1;
-  min-height: 82px;
-  position: relative;
-  border: 0;
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: white;
-  color: var(--navy);
-  font: inherit;
-  cursor: pointer;
+    aspect-ratio: 1.22 / 1;
+    min-height: 82px;
+    position: relative;
+    border: 0;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: white;
+    color: var(--navy);
+    font: inherit;
+    cursor: pointer;
 }
 
 .calendar-day:hover {
-  background: #f8faff;
+    background: #f8faff;
 }
 
 .calendar-day.outside {
-  color: #bdc3cf;
-  background: #fafbfc;
+    color: #bdc3cf;
+    background: #fafbfc;
 }
 
 .calendar-day.selected {
-  background: #f1f5ff;
-  box-shadow: inset 0 0 0 2px rgba(49, 92, 244, .5);
+    background: #f1f5ff;
+    box-shadow: inset 0 0 0 2px rgba(49, 92, 244, .5);
 }
 
 .day-number {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  width: 28px;
-  height: 28px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  font-size: 13px;
-  font-weight: 800;
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 800;
 }
 
 .calendar-day.today .day-number {
-  background: var(--blue);
-  color: white;
+    background: var(--blue);
+    color: white;
 }
 
 .day-dot {
-  position: absolute;
-  left: 10px;
-  bottom: 9px;
-  min-width: 22px;
-  height: 22px;
-  display: grid;
-  place-items: center;
-  border-radius: 7px;
-  background: #edf1ff;
-  color: var(--blue);
-  font-size: 11px;
+    position: absolute;
+    left: 10px;
+    bottom: 9px;
+    min-width: 22px;
+    height: 22px;
+    display: grid;
+    place-items: center;
+    border-radius: 7px;
+    background: #edf1ff;
+    color: var(--blue);
+    font-size: 11px;
 }
 
 .agenda-panel {
-  padding: 28px 22px;
-  background: #fbfcfe;
+    padding: 28px 22px;
+    background: #fbfcfe;
 }
 
 .agenda-heading h2 {
-  max-width: 220px;
-  margin: 0;
-  color: var(--navy);
-  font-size: 17px;
-  text-transform: capitalize;
+    max-width: 220px;
+    margin: 0;
+    color: var(--navy);
+    font-size: 17px;
+    text-transform: capitalize;
 }
 
 .add-button {
-  height: 38px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  border: 0;
-  border-radius: 9px;
-  padding: 0 11px;
-  background: var(--blue);
-  color: white;
-  font: inherit;
-  font-size: 12px;
-  font-weight: 800;
-  cursor: pointer;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 0;
+    border-radius: 9px;
+    padding: 0 11px;
+    background: var(--blue);
+    color: white;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
 }
 
 .event-form {
-  display: grid;
-  gap: 8px;
-  margin-top: 18px;
-  padding: 12px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: white;
+    display: grid;
+    gap: 8px;
+    margin-top: 18px;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: white;
 }
 
 .event-form input,
 .event-form select,
 .event-form button {
-  width: 100%;
-  height: 38px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 0 9px;
-  background: white;
-  font: inherit;
-  color: var(--navy);
+    width: 100%;
+    height: 38px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0 9px;
+    background: white;
+    font: inherit;
+    color: var(--navy);
 }
 
 .time-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
 }
 
 .event-form button {
-  border: 0;
-  background: var(--navy);
-  color: white;
-  font-weight: 800;
-  cursor: pointer;
+    border: 0;
+    background: var(--navy);
+    color: white;
+    font-weight: 800;
+    cursor: pointer;
 }
 
 .event-list {
-  display: grid;
-  gap: 8px;
-  margin-top: 20px;
+    display: grid;
+    gap: 8px;
+    margin-top: 20px;
 }
 
 .empty-state {
-  display: grid;
-  justify-items: center;
-  gap: 8px;
-  padding: 38px 12px;
-  color: #9aa3b2;
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    padding: 38px 12px;
+    color: #9aa3b2;
 }
 
 .empty-state p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 13px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
 }
 
 .event-item {
-  min-height: 72px;
-  display: grid;
-  grid-template-columns: 4px 1fr auto;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 10px 8px 0;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: white;
+    min-height: 72px;
+    display: grid;
+    grid-template-columns: 4px 1fr auto;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px 8px 0;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: white;
 }
 
 .event-color {
-  align-self: stretch;
-  border-radius: 0 4px 4px 0;
+    align-self: stretch;
+    border-radius: 0 4px 4px 0;
 }
 
 .event-item strong {
-  color: var(--navy);
-  font-size: 13px;
+    color: var(--navy);
+    font-size: 13px;
 }
 
 .event-item p {
-  margin: 3px 0 0;
-  color: var(--muted);
-  font-size: 12px;
+    margin: 3px 0 0;
+    color: var(--muted);
+    font-size: 12px;
 }
 
 .event-category {
-  border-radius: 999px;
-  padding: 5px 8px;
-  background: #f1f3f7;
-  color: var(--muted);
-  font-size: 10px;
-  font-weight: 800;
+    border-radius: 999px;
+    padding: 5px 8px;
+    background: #f1f3f7;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
 }
 
 @media (max-width: 900px) {
-  .auth-card {
-    grid-template-columns: 1fr;
-  }
+    .auth-card {
+        grid-template-columns: 1fr;
+    }
 
-  .auth-brand {
-    min-height: 170px;
-  }
+    .auth-brand {
+        min-height: 170px;
+    }
 
-  .auth-content {
-    padding: 26px 24px 38px;
-  }
+    .auth-content {
+        padding: 26px 24px 38px;
+    }
 
-  .calendar-layout {
-    grid-template-columns: 1fr;
-  }
+    .calendar-layout {
+        grid-template-columns: 1fr;
+    }
 
-  .calendar-panel {
-    border-right: 0;
-  }
+    .calendar-panel {
+        border-right: 0;
+    }
 
-  .agenda-panel {
-    border-top: 1px solid var(--line);
-  }
+    .agenda-panel {
+        border-top: 1px solid var(--line);
+    }
 }
 
 @media (max-width: 640px) {
-  .auth-page {
-    padding: 12px;
-  }
+    .auth-page {
+        padding: 12px;
+    }
 
-  .auth-card {
-    min-height: calc(100vh - 24px);
-    border-radius: 18px;
-  }
+    .auth-card {
+        min-height: calc(100vh - 24px);
+        border-radius: 18px;
+    }
 
-  .auth-brand {
-    min-height: 130px;
-    padding: 24px;
-  }
+    .auth-brand {
+        min-height: 130px;
+        padding: 24px;
+    }
 
-  .brand-copy {
-    display: none;
-  }
+    .brand-copy {
+        display: none;
+    }
 
-  .auth-row {
-    grid-template-columns: 1fr;
-  }
+    .auth-row {
+        grid-template-columns: 1fr;
+    }
 
-  .app-header {
-    height: 64px;
-    padding: 0 14px;
-  }
+    .app-header {
+        height: 64px;
+        padding: 0 14px;
+    }
 
-  .user-copy {
-    display: none;
-  }
+    .user-copy {
+        display: none;
+    }
 
-  .calendar-layout {
-    min-height: calc(100vh - 64px);
-  }
+    .calendar-layout {
+        min-height: calc(100vh - 64px);
+    }
 
-  .calendar-panel {
-    padding: 20px 12px;
-  }
+    .calendar-panel {
+        padding: 20px 12px;
+    }
 
-  .weekday-row span {
-    padding: 9px 4px;
-    text-align: center;
-  }
+    .weekday-row span {
+        padding: 9px 4px;
+        text-align: center;
+    }
 
-  .calendar-day {
-    min-height: 58px;
-  }
+    .calendar-day {
+        min-height: 58px;
+    }
 
-  .day-number {
-    top: 5px;
-    right: 5px;
-  }
+    .day-number {
+        top: 5px;
+        right: 5px;
+    }
 
-  .day-dot {
-    left: 5px;
-    bottom: 5px;
-  }
+    .day-dot {
+        left: 5px;
+        bottom: 5px;
+    }
 }

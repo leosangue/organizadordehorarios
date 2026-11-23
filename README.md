@@ -1,6 +1,8 @@
-# Organizador de Horarios - Prepa CEDI (V1)
+# Organizador de Horarios — Prepa CEDI
 
-Primera versión funcional de una app web para estudiantes de la Prepa CEDI, enfocada en organizar clases y eventos personales en una sola plataforma.
+> ## 🌐 [Abrir aplicación: organizadordehorarios.vercel.app](https://organizadordehorarios.vercel.app)
+
+Aplicación web creada con React y Vite para consultar horarios, administrar eventos personales y organizar las actividades académicas de los alumnos de la Prepa CEDI.
 
 ## Integrantes
 
@@ -9,168 +11,120 @@ Primera versión funcional de una app web para estudiantes de la Prepa CEDI, enf
 - Ivan Robles Lazcano
 - Leonardo Sandoval Guevara
 
-## Objetivo
+## Acceso a la aplicación
 
-Facilitar que los alumnos de la Prepa CEDI consulten su horario y administren su tiempo con vistas diaria, semanal y mensual, reduciendo la captura manual de datos y los empalmes de actividades.
+- **Sitio publicado:** https://organizadordehorarios.vercel.app
+- **Inicio de sesión:** `/`
+- **Registro:** `/crear-cuenta`
 
-## Alcance de la V1
+### Cuenta de demostración
 
-Esta versión ya incluye:
+- Correo: `alumno@cedi.edu.mx`
+- Contraseña: `cedi123`
 
-- Paleta de colores, tipografía y componentes base
-- Esquema de datos para usuarios, categorías, eventos y horarios
-- Prototipo de inicio de sesión
-- Prototipo de agregar evento
-- Prototipo de vistas diaria, semanal y mensual
-- Base inicial de horarios CEDI para validación
-- Documentación de entorno de desarrollo y servidor
-- Comparativa con Google Calendar y When2meet
-- Plan de validación y semana 2
+## Funcionalidades actuales
 
-## Diseño base
+- Inicio de sesión con correo y contraseña.
+- Registro de nuevas cuentas por grupo.
+- Sesión persistente en el navegador.
+- Cierre de sesión.
+- Calendario mensual navegable entre meses.
+- Selección de cualquier día del calendario.
+- Botón para volver al mes actual.
+- Vista de agenda del día seleccionado.
+- Creación de eventos personales con categoría y horario.
+- Indicador de cantidad de eventos en los días del calendario.
+- Categorías para clases, tareas, exámenes y eventos personales.
+- Interfaz adaptable para computadora, tablet y celular.
+- Persistencia local de usuarios, sesión y eventos mediante `localStorage`.
 
-### Paleta
+## Acceso protegido
 
-- Primario: `#0b3c5d`
-- Secundario: `#328cc1`
-- Acento: `#d9b310`
-- Éxito: `#198754`
-- Fondo: `#f7f4ea`
-- Texto: `#1f2933`
+Antes de iniciar sesión solamente se muestran las pantallas de **Log in** y **Sign up**.
 
-### Tipografía
+Después de autenticarse aparecen:
 
-- Heading: Poppins
-- Body: Nunito Sans
-- Mono: JetBrains Mono
+- Encabezado con nombre y grupo del usuario.
+- Calendario mensual.
+- Agenda del día seleccionado.
+- Formulario para agregar eventos.
+- Botón para cerrar sesión.
 
-### Componentes base
+## Datos incluidos
 
-- Botón primario / secundario
-- Tarjeta (`panel`)
-- Chip de categoría
-- Tabla de agenda
-- Segmentador de vistas
+La aplicación contiene información inicial de ejemplo para validar la interfaz:
 
-## Modelo de datos (V1)
+- Usuario demostrativo.
+- Eventos iniciales.
+- Categorías académicas.
+- Horarios preliminares de grupos CEDI.
+- Grupos disponibles al crear una cuenta.
 
-Entidades definidas:
+Los usuarios, eventos y sesiones creados se guardan actualmente en el navegador del equipo. Un backend o base de datos real puede integrarse posteriormente sin cambiar el funcionamiento general de la interfaz.
 
-- `users`
-- `categories`
-- `events`
-- `schedules`
-
-Campos principales:
-
-- Usuario: id, nombre, email, rol, grupo, turno
-- Evento: título, descripción, categoría, fecha, hora inicio/fin, fuente, grupo
-- Horario: grupo, turno, día, materia, docente, aula
-
-## Prototipos implementados
-
-### Inicio de sesión
-
-Formulario de acceso para simular sesión de alumno y habilitar operaciones de agenda.
-
-### Agregar evento
-
-Formulario con campos:
-
-- título
-- descripción
-- categoría
-- fecha
-- hora de inicio y fin
-
-Los eventos se agregan al estado de la aplicación en tiempo real.
-
-### Vistas de agenda
-
-- Diaria: tabla de eventos por fecha
-- Semanal: agrupación por días
-- Mensual: resumen de eventos por día
-
-## Horarios de grupos CEDI (levantamiento inicial)
-
-Se integró una base preliminar de horarios por grupo (ej. 1A, 2B, 3A) con:
-
-- día
-- hora
-- materia
-- docente
-- aula
-
-Importante: este dataset de V1 está pensado para revisión y validación contra fuente oficial de control escolar en semana 2.
-
-## Entorno de desarrollo y servidor
-
-### Stack
+## Tecnologías
 
 - React 19
-- Vite 8
+- React Router
+- Vite
 - JavaScript
 - CSS
+- Lucide React
 
-### Comandos
+## Rutas
+
+- `/`: inicio de sesión o aplicación autenticada.
+- `/crear-cuenta`: registro de una cuenta nueva.
+
+## Ejecución local
 
 ```bash
 npm install
 npm run dev
+```
+
+Abrir en el navegador:
+
+```text
+http://localhost:5173
+```
+
+## Compilación
+
+```bash
 npm run build
 npm run preview
 ```
 
-### Servidor / despliegue
+## Despliegue en Vercel
 
-Para publicar la app se recomienda:
+El proyecto está publicado en:
 
-- Vercel (ideal para deploy continuo con GitHub)
-- Netlify (alternativa equivalente)
+# [organizadordehorarios.vercel.app](https://organizadordehorarios.vercel.app)
 
-## Alternativas del mercado y diferenciador
+La configuración `vercel.json` incluye una regla de rewrites para que React Router conserve rutas como `/crear-cuenta` al recargar o abrir enlaces directamente.
 
-| Plataforma | Fortalezas | Limitaciones para este caso |
-|---|---|---|
-| Google Calendar | Maduro, recordatorios, multi-dispositivo | No entrega horario CEDI precargado por grupo |
-| When2meet | Excelente para coordinar disponibilidad en grupo | No es gestor académico integral |
-| Organizador CEDI (este proyecto) | Enfoque institucional y horario listo para alumnos | V1 aún en validación de horarios oficiales |
-
-### Diferenciador principal
-
-El proyecto reduce el tiempo de configuración inicial al usar horarios enfocados a la Prepa CEDI, priorizando eficiencia para estudiantes.
-
-## Validación de prototipos
-
-Checklist V1:
-
-- Validar flujo de login con usuarios de prueba
-- Validar claridad del formulario de evento
-- Medir rapidez para localizar clases en vista semanal
-- Levantar feedback de uso en móvil
-
-## Plan semana 2
-
-- Confirmar horarios oficiales con coordinación académica
-- Integrar persistencia de datos (localStorage o backend básico)
-- Añadir navegación por rutas y estados de sesión más robustos
-- Mejorar accesibilidad y notificaciones
-
-## Estructura del proyecto
+## Estructura principal
 
 ```text
 organizadordehorarios/
-  src/
-    App.jsx
-    App.css
-    index.css
-    main.jsx
-  public/
-  package.json
-  vite.config.js
-  README.md
+├── public/
+├── src/
+│   ├── OrganizerApp.jsx
+│   ├── OrganizerApp.css
+│   ├── storage.js
+│   ├── Paginas/
+│   │   ├── Crearcuenta.jsx
+│   │   └── Crearcuenta.css
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx
+├── vercel.json
+├── package.json
+└── README.md
 ```
 
-## Estado
+## Estado del proyecto
 
-Primera versión lista para evaluación funcional y ajustes de semana 2.
+Versión funcional con acceso, registro, calendario mensual, agenda diaria y persistencia local. La integración con una base de datos real y horarios institucionales oficiales continúa como siguiente etapa.
