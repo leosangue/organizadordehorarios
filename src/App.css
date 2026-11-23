@@ -325,6 +325,17 @@ th {
   padding: 0.5rem 0;
 }
 
+.account-link {
+  color: #0b3c5d;
+  font-weight: 700;
+  text-align: center;
+  text-decoration-thickness: 2px;
+}
+
+.account-link:hover {
+  color: #328cc1;
+}
+
 @media (max-width: 980px) {
 
   .split,

@@ -361,6 +361,7 @@ function App() {
               />
             </label>
             <button type="submit" className="btn btn-primary">Iniciar sesión</button>
+            <a className="account-link" href="/crear-cuenta">¿No tienes cuenta? Crear una cuenta</a>
           </form>
           {currentUser ? (
             <p className="status success">Sesión activa: {currentUser.nombre} ({currentUser.grupo})</p>
