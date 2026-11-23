@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { readUsers, saveUsers } from '../storage';
 import './Crearcuenta.css';
 
 function Crearcuenta() {
@@ -6,7 +7,26 @@ function Crearcuenta() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        alert(`Cuenta creada para ${form.nombre}.`);
+        const users = readUsers();
+        const email = form.email.trim().toLowerCase();
+
+        if (users.some((user) => user.email.toLowerCase() === email)) {
+            alert('Ese correo ya está registrado.');
+            return;
+        }
+
+        const newUser = {
+            id: `u-${Date.now()}`,
+            nombre: form.nombre.trim(),
+            email,
+            password: form.password,
+            rol: 'alumno',
+            grupo: '3A',
+            turno: 'matutino',
+        };
+
+        saveUsers([...users, newUser]);
+        alert(`Cuenta creada para ${newUser.nombre}. Ya puedes iniciar sesión.`);
         setForm({ email: '', password: '', nombre: '' });
     }
 

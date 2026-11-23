@@ -336,6 +336,46 @@ th {
   color: #328cc1;
 }
 
+.month-toolbar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.month-toolbar h3 {
+  margin: 0;
+  text-align: center;
+}
+
+.month-day {
+  border: 1px solid #d9e2ec;
+  border-radius: 0.5rem;
+  padding: 0.45rem;
+  background: #fbfdff;
+  display: grid;
+  gap: 0.25rem;
+  color: #1f2933;
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.month-day:hover,
+.month-day.selected {
+  border-color: #328cc1;
+  background: #edf7fc;
+}
+
+.session-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
 @media (max-width: 980px) {
 
   .split,
@@ -362,5 +402,18 @@ th {
 
   .month-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .month-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .month-toolbar .btn {
+    width: 100%;
+  }
+
+  .session-status {
+    align-items: stretch;
+    flex-direction: column;
   }
 }

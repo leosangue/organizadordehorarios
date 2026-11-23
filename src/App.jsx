@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { readEvents, readSession, readUsers, saveEvents, saveSession } from './storage'
 import './App.css'
 
 const PALETTE = [
@@ -125,7 +126,7 @@ const SITE_NAV = [
   { id: 'vistas-agenda', label: 'Vistas' },
   { id: 'horarios-cedi', label: 'Horarios CEDI' },
   { id: 'entorno', label: 'Entorno y mercado' },
-  { id: 'validacion', label: 'Semana 2' },
+  { id: 'validacion', label: 'Avance / Semana 3' },
 ]
 
 function toDateOnly(dateValue) {
@@ -158,8 +159,8 @@ function eventCategoryName(categoryId) {
 function App() {
   const [activeView, setActiveView] = useState('diaria')
   const [selectedDate, setSelectedDate] = useState(isoToday)
-  const [events, setEvents] = useState(INITIAL_EVENTS)
-  const [currentUser, setCurrentUser] = useState(null)
+  const [events, setEvents] = useState(() => readEvents(INITIAL_EVENTS))
+  const [currentUser, setCurrentUser] = useState(() => readSession())
   const [loginForm, setLoginForm] = useState({ email: '', password: '' })
   const [eventForm, setEventForm] = useState({
     titulo: '',
@@ -224,14 +225,30 @@ function App() {
     return summary
   }, [monthlyEvents])
 
+  useEffect(() => {
+    saveEvents(events)
+  }, [events])
+
+  useEffect(() => {
+    saveSession(currentUser)
+  }, [currentUser])
+
   function handleLoginSubmit(e) {
     e.preventDefault()
-    const user = USERS.find((u) => u.email.toLowerCase() === loginForm.email.toLowerCase())
+    const users = readUsers()
+    const user = users.find((u) =>
+      u.email.toLowerCase() === loginForm.email.toLowerCase()
+      && u.password === loginForm.password
+    )
     if (!user) {
-      alert('Usuario no encontrado. Usa alumno@cedi.edu.mx para demo.')
+      alert('Correo o contraseña incorrectos.')
       return
     }
     setCurrentUser(user)
+  }
+
+  function handleLogout() {
+    setCurrentUser(null)
   }
 
   function handleAddEventSubmit(e) {
@@ -260,6 +277,13 @@ function App() {
 
   const selectedDateObject = new Date(`${selectedDate}T00:00:00`)
   const monthLabel = selectedDateObject.toLocaleDateString('es-MX', { month: 'long', year: 'numeric' })
+
+  function changeMonth(amount) {
+    const next = new Date(selectedDateObject.getFullYear(), selectedDateObject.getMonth() + amount, 1)
+    const yyyy = next.getFullYear()
+    const mm = String(next.getMonth() + 1).padStart(2, '0')
+    setSelectedDate(`${yyyy}-${mm}-01`)
+  }
 
   return (
     <main className="app-shell">
@@ -364,7 +388,10 @@ function App() {
             <a className="account-link" href="/crear-cuenta">¿No tienes cuenta? Crear una cuenta</a>
           </form>
           {currentUser ? (
-            <p className="status success">Sesión activa: {currentUser.nombre} ({currentUser.grupo})</p>
+            <div className="session-status">
+              <p className="status success">Sesión activa: {currentUser.nombre} ({currentUser.grupo})</p>
+              <button type="button" className="btn btn-secondary" onClick={handleLogout}>Cerrar sesión</button>
+            </div>
           ) : (
             <p className="status">Aún sin sesión activa.</p>
           )}
@@ -504,19 +531,32 @@ function App() {
 
         {activeView === 'mensual' && (
           <article className="agenda-card">
-            <h3>Resumen mensual: {monthLabel}</h3>
+            <div className="month-toolbar">
+              <button type="button" className="btn btn-secondary" onClick={() => changeMonth(-1)} aria-label="Mes anterior">←</button>
+              <h3>Resumen mensual: {monthLabel}</h3>
+              <button type="button" className="btn btn-secondary" onClick={() => changeMonth(1)} aria-label="Mes siguiente">→</button>
+            </div>
             <div className="month-grid">
-              {Array.from({ length: 31 }).map((_, idx) => {
-                const day = idx + 1
-                const yyyyMm = selectedDate.slice(0, 7)
-                const key = `${yyyyMm}-${String(day).padStart(2, '0')}`
-                return (
-                  <div key={key}>
-                    <span>{day}</span>
-                    <strong>{monthSummary[key] ?? 0} evento(s)</strong>
-                  </div>
-                )
-              })}
+              {(() => {
+                const year = selectedDateObject.getFullYear()
+                const month = selectedDateObject.getMonth()
+                const daysInMonth = new Date(year, month + 1, 0).getDate()
+                return Array.from({ length: daysInMonth }).map((_, idx) => {
+                  const day = idx + 1
+                  const key = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+                  return (
+                    <button
+                      type="button"
+                      key={key}
+                      className={key === selectedDate ? 'month-day selected' : 'month-day'}
+                      onClick={() => setSelectedDate(key)}
+                    >
+                      <span>{day}</span>
+                      <strong>{monthSummary[key] ?? 0} evento(s)</strong>
+                    </button>
+                  )
+                })
+              })()}
             </div>
           </article>
         )}
@@ -598,24 +638,27 @@ function App() {
       </section>
 
       <section id="validacion" className="panel">
-        <h2>9) Validación de prototipos y plan semana 2</h2>
+        <h2>9) Avance probado y plan para semana 3</h2>
         <div className="week2-grid">
           <article>
-            <h3>Validación V1 (checklist)</h3>
+            <h3>Avance de semana 2</h3>
             <ul>
-              <li>Probar flujo de login demo con 5 estudiantes</li>
-              <li>Revisar claridad de formulario de alta de evento</li>
-              <li>Medir tiempo para encontrar una clase en vista semanal</li>
-              <li>Recoger feedback de usabilidad en móvil</li>
+              <li>Estructura HTML/CSS y navegación por secciones y rutas</li>
+              <li>Registro e inicio de sesión con credenciales persistentes</li>
+              <li>Calendario mensual navegable con selección de días</li>
+              <li>Horarios CEDI representados con el esquema de schedules</li>
+              <li>Eventos y sesión persistidos en el navegador</li>
+              <li>Prueba local: registro, acceso y navegación mensual aprobados</li>
             </ul>
           </article>
           <article>
-            <h3>Plan semana 2</h3>
+            <h3>Plan semana 3</h3>
             <ul>
-              <li>Validar horarios oficiales con control escolar CEDI</li>
-              <li>Agregar persistencia (localStorage o backend inicial)</li>
-              <li>Implementar navegación por rutas</li>
-              <li>Añadir recordatorios y mejoras de accesibilidad</li>
+              <li>Demostrar el sistema completo al equipo y a usuarios CEDI</li>
+              <li>Recoger observaciones de registro, calendario y usabilidad móvil</li>
+              <li>Validar horarios oficiales contra control escolar</li>
+              <li>Preparar integración con base de datos real</li>
+              <li>Incorporar resultados de prueba y pulir accesibilidad</li>
             </ul>
           </article>
         </div>
